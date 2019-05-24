@@ -168,7 +168,7 @@ class App extends Component {
   }
 
   render() {
-    // let test = pieceLabel;//
+    let test = pieceLabel;//
     return (
       <div>
         <Pie data={this.state.data} />
