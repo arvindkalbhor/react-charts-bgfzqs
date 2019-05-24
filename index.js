@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
-import { Doughnut,Pie } from 'react-chartjs-2';
-import {pieceLabel} from 'chartjs-plugin-labels';
+import { Doughnut, Pie } from 'react-chartjs-2';
+import { pieceLabel } from 'chartjs-plugin-labels';
 
 // const data = {
 // 	labels: [
@@ -31,61 +31,107 @@ import {pieceLabel} from 'chartjs-plugin-labels';
 //   }]
 // };
 
-const data = {
-	labels: [
-		'Red',
-		'Blue',
-		'Yellow'
-	],
-	datasets: [{
-		data: [50, 20, 30],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-    hoverBorderColor:[
-      '#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-    ],
-    hoverBorderWidth:[
-      10,10,10
-    ],
-    borderColor:[
-      '#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-    ],
-    borderWidth:[5,5,5]
-	}],
-  options:[{
-    pieceLabel: {
-   render: 'sdfd'
-    }
-  }],
-  text: '20%',
-};
+// const data = {
+// 	labels: [
+// 		'Red',
+// 		'Blue',
+// 		'Yellow'
+// 	],
+// 	datasets: [{
+// 		data: [50, 20, 30],
+// 		backgroundColor: [
+// 		'#FF6384',
+// 		'#36A2EB',
+// 		'#FFCE56'
+// 		],
+// 		hoverBackgroundColor: [
+// 		'#FF6384',
+// 		'#36A2EB',
+// 		'#FFCE56'
+// 		],
+//     hoverBorderColor:[
+//       '#FF6384',
+// 		'#36A2EB',
+// 		'#FFCE56'
+//     ],
+//     hoverBorderWidth:[
+//       10,10,10
+//     ],
+//     borderColor:[
+//       '#FF6384',
+// 		'#36A2EB',
+// 		'#FFCE56'
+//     ],
+//     borderWidth:[5,5,5]
+// 	}],
+//   options:[{
+//     pieceLabel: {
+//    render: 'sdfd'
+//     }
+//   }],
+//   text: '20%',
+// };
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React'
+      name: 'React',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
+        ],
+        datasets: [{
+          data: [50, 20, 30],
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          hoverBorderColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          hoverBorderWidth: [
+            10, 10, 10
+          ],
+          borderColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          borderWidth: [5, 5, 5]
+        }],
+        options: [{
+          pieceLabel: {
+            render: 'value'
+          }
+        }],
+        text: '20%',
+      }
     };
   }
-  componentDidMount(){
+  
+  componentDidMount() {
+    let data = this.state.data;
+    data.options[0].pieceLabel.render = 'label'
+    this.setState({
+      data: data
+    })
     // console.log(pieceLabel)
     // var originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
     // Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     //   draw: function() {
     //     originalDoughnutDraw.apply(this, arguments);
-        
+
     //     var chart = this.chart;
     //     var width = chart.chart.width,
     //         height = chart.chart.height,
@@ -110,11 +156,11 @@ class App extends Component {
   }
 
   render() {
-    let test = pieceLabel;
+    // let test = pieceLabel;
     return (
       <div>
-        <Pie data={data} />
-        <Doughnut data={data} />
+        <Pie data={this.state.data} />
+        <Doughnut data={this.state.data} />
 
       </div>
     );
