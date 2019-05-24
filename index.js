@@ -5,6 +5,11 @@ import './style.css';
 import { Doughnut, Pie } from 'react-chartjs-2';
 import { pieceLabel } from 'chartjs-plugin-labels';
 
+//reference
+//https://emn178.github.io/chartjs-plugin-labels/samples/demo/
+//https://www.chartjs.org/docs/latest/charts/doughnut.html
+//https://github.com/emn178/chartjs-plugin-labels
+
 // const data = {
 // 	labels: [
 // 		'Red',
@@ -78,13 +83,11 @@ class App extends Component {
     this.state = {
       name: 'React',
       data: {
-        labels: [
-          'Red',
+        labels: ['Red',
           'Blue',
-          'Yellow'
-        ],
+          'Yellow'],
         datasets: [{
-          data: [50, 20, 30],
+          data: ['50', '20', '30'],
           backgroundColor: [
             '#FF6384',
             '#36A2EB',
@@ -110,22 +113,31 @@ class App extends Component {
           ],
           borderWidth: [5, 5, 5]
         }],
-        options: [{
+        options: {
           pieceLabel: {
-            render: 'value'
+            labels: [{
+              render: function(){return 'label'},
+            },
+            {
+              render: 'label',
+            },
+            {
+              render: 'label',
+            }
+            ]
           }
-        }],
-        text: '20%',
+        },
+        text: '20',
       }
     };
   }
-  
+
   componentDidMount() {
-    let data = this.state.data;
-    data.options[0].pieceLabel.render = 'label'
-    this.setState({
-      data: data
-    })
+    // let data = this.state.data;
+    // data.options[0].pieceLabel.render = 'label'
+    // this.setState({
+    //   data: data
+    // })
     // console.log(pieceLabel)
     // var originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
     // Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
@@ -156,7 +168,7 @@ class App extends Component {
   }
 
   render() {
-    // let test = pieceLabel;
+    // let test = pieceLabel;//
     return (
       <div>
         <Pie data={this.state.data} />
